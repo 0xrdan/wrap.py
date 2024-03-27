@@ -1,7 +1,10 @@
-# WrapPy
-# v0.1
-# Just a simple Python executor
-# by Dan Monteiro aka 0xrDan
+# Add module docstring
+"""
+WrapPy
+v0.1
+Just a simple Python executor
+by Dan Monteiro aka 0xrDan
+"""
 
 import tkinter as tk
 from tkinter import filedialog
@@ -20,15 +23,19 @@ python_colors = {
 }
 
 def load_file():
-    # Open a file dialog to select a Python file to load into the text editor.
+    """
+    Open a file dialog to select a Python file and load it into the text editor.
+    """
     filename = filedialog.askopenfilename()
-    with open(filename, 'r') as file:
+    with open(filename, 'r', encoding='utf-8') as file:
         code_text.delete('1.0', tk.END)
         code_text.insert(tk.END, file.read())
         highlight_syntax()
 
-def highlight_syntax(event=None):
-    #  Highlight syntax elements in the code editor based on predefined patterns.
+def highlight_syntax():
+    """
+    Highlight syntax elements in the code editor based on predefined patterns.
+    """
     code = code_text.get("1.0", tk.END)
     code_text.tag_remove("keyword", "1.0", tk.END)
     code_text.tag_remove("built_in", "1.0", tk.END)
@@ -64,7 +71,7 @@ def execute_code():
     output_text.delete('1.0', tk.END)
     try:
         # Redirect stdout to a variable
-        result = subprocess.run(["python", "-c", code], capture_output=True, text=True)
+        result = subprocess.run(["python", "-c", code], capture_output=True, text=True, check=False)
         output_text.insert(tk.END, result.stdout)
         if result.stderr:
             output_text.insert(tk.END, f"Error: {result.stderr}")
