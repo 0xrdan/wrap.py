@@ -50,13 +50,29 @@ def highlight_syntax():
         (r'\b(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)\b', "number"),
         (r'\'\'\'(.*?)\'\'\'|\"\"\"(.*?)\"\"\"', "string"),  # Multiline string
         (r'\'(?:\\.|[^\'\\])*\'|\"(?:\\.|[^\"\\])*\"', "string"),  # Single-line string
-        (r'\b(?:import|from|as|def|class|for|if|else|elif|while|return|try|except|finally|with|pass|break|continue|in)\b', "keyword"),
-        (r'# .*?(?=\n|$\b(?!#\b[0-9a-fA-F]{6}\b)|\n|$)', "comment"),  # Matches comments excluding hex color codes
-        (r'(?<!\w\.)\b\w+\s*(?=\()', "function"),  # Matches function names followed by "(" with no text immediately preceding it
-        (r'\.\s*(\w+)(?=\()', "method"),  # Matches words preceding "(" and after "."
-        (r'\b#[0-9a-fA-F]{6}\b', "string")  # Hex color code
+        (
+            r'\b(?:import|from|as|def|class|for|if|else|elif|while|return'
+            r'|try|except|finally|with|pass|break|continue|in)\b',
+            "keyword"
+        ),
+        (
+            r'# .*?(?=\n|$\b(?!#\b[0-9a-fA-F]{6}\b)|\n|$)',
+            "comment"
+        ),  # Matches comments excluding hex color codes
+        (
+            r'(?<!\w\.)\b\w+\s*(?=\()',
+            "function"
+        ),  # Matches function names followed by "(" with no text immediately preceding it
+        (
+            r'\.\s*(\w+)(?=\()',
+            "method"
+        ),  # Matches words preceding "(" and after "."
+        (
+            r'\b#[0-9a-fA-F]{6}\b',
+            "string"
+        )  # Hex color code
     ]
-
+    
     for pattern, tag in patterns:
         for match in re.finditer(pattern, code):
             start = match.start()
