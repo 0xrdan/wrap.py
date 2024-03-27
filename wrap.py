@@ -1,4 +1,3 @@
-# Add module docstring
 """
 WrapPy
 v0.1
