@@ -70,7 +70,12 @@ def execute_code():
     output_text.delete('1.0', tk.END)
     try:
         # Redirect stdout to a variable
-        result = subprocess.run(["python", "-c", code], capture_output=True, text=True, check=False)
+        result = subprocess.run(
+            ["python", "-c", code],
+            capture_output=True,
+            text=True,
+            check=False
+        )
         output_text.insert(tk.END, result.stdout)
         if result.stderr:
             output_text.insert(tk.END, f"Error: {result.stderr}")
