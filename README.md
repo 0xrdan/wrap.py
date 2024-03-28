@@ -1,4 +1,7 @@
 # WrapPy
+| Build | Tests |
+| :---: | :----: | 
+| ![Static Badge](https://img.shields.io/badge/v_0.1-1?logo=github&logoColor=%23999&labelColor=%232e353b&color=%23aaa) | [![CodeQL](https://github.com/0xrdan/wrap.py/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/0xrdan/wrap.py/actions/workflows/github-code-scanning/codeql) [![Pylint](https://github.com/0xrdan/wrap.py/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/0xrdan/wrap.py/actions/workflows/pylint.yml)| |
 
 WrapPy is a simple Python script executor developed by [Dan Monteiro](https://github.com/0xrDan). It provides a user-friendly interface to load, execute, and display the output of Python scripts.
 
