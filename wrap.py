@@ -10,7 +10,7 @@ from tkinter import filedialog
 import subprocess
 import re
 
-""" Define color scheme for Python syntax highlighting """
+# Define color scheme for Python syntax highlighting
 python_colors = {
     "keyword": "cyan",
     "built_in": "orange",
@@ -40,7 +40,7 @@ def highlight_syntax():
     code_text.tag_remove("method", "1.0", tk.END)
     code_text.tag_remove("function", "1.0", tk.END)
 
-    """ Regular expressions for syntax highlighting """
+    # Regular expressions for syntax highlighting
     patterns = [
         (r'\b(?:open|True|False|None)\b', "built_in"),
         (r'\b(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)\b', "number"),
@@ -62,7 +62,7 @@ def highlight_syntax():
         (
             r'\.\s*(\w+)(?=\()',
             "method"
-        ),  # Matches words preceding "(" and after "." 
+        ),  # Matches words preceding "(" and after "."
         (
             r'\b#[0-9a-fA-F]{6}\b',
             "string"
@@ -77,11 +77,11 @@ def highlight_syntax():
             code_text.tag_configure(tag, foreground=python_colors[tag])
 
 def execute_code():
-    """ Execute the Python code in the text editor and display the output in the output text area. """
+    """ Execute Python code in text editor and display the output in the output text area. """
     code = code_text.get('1.0', tk.END)
     output_text.delete('1.0', tk.END)
     try:
-        """ Redirect stdout to a variable """
+        # Redirect stdout to a variable
         result = subprocess.run(
             ["python", "-c", code],
             capture_output=True,
@@ -94,28 +94,28 @@ def execute_code():
     except Exception as e:
         output_text.insert(tk.END, f"Error: {str(e)}")
 
-""" Create the main Tkinter window """
+# Create the main Tkinter window
 root = tk.Tk()
 root.title("WrapPy: Just a simple Python executor - by 0xrDan")
 
-""" Create and configure the "Load File" button """
+# Create and configure the "Load File" button
 load_button = tk.Button(root, text="Load File", command=load_file)
 load_button.pack()
 
-""" Create the text area for Python code input """
+# Create the text area for Python code input
 code_text = tk.Text(root, height=20, width=80, bg="#1e1e1e", fg="#ffffff")
 code_text.pack()
 code_text.bind("<KeyRelease>", highlight_syntax)
 
-""" Create and configure the "Execute Code" button """
+# Create and configure the "Execute Code" button
 execute_button = tk.Button(root, text="Execute Code", command=execute_code)
 execute_button.pack()
 
-""" Create and configure the output text label """
+# Create and configure the output text label
 output_label = tk.Label(root, text="Output:")
 output_label.pack()
 
-""" Create the text area for displaying output """
+# Create the text area for displaying output
 output_text = tk.Text(root, height=10, width=80, bg="#1e1e1e", fg="#ffffff")
 output_text.pack()
 
