@@ -91,8 +91,10 @@ def execute_code():
         output_text.insert(tk.END, result.stdout)
         if result.stderr:
             output_text.insert(tk.END, f"Error: {result.stderr}")
-    except Exception as e:
-        output_text.insert(tk.END, f"Error: {str(e)}")
+    except subprocess.CalledProcessError as e:
+        output_text.insert(tk.END, f"Error: {e}")
+    except FileNotFoundError as e:
+        output_text.insert(tk.END, f"Error: {e}")
 
 # Create the main Tkinter window
 root = tk.Tk()
